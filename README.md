@@ -95,5 +95,66 @@ Now, you can login in to <b>grader</b> using:
 * Create new database using: `postgres=# CREATE DATABASE catalog;`.
 * Create new user using: `postgres=# CREATE USER catalog WITH PASSWORD 'password';`.
 * Grant database permissions: `postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;`.
-* Quit Postgres using: `psotgres=# \q` then `$ exit`.
+* Quit Postgres using: `postgres=# \q` then `$ exit`.
 
+### Setting up Item-Catalog
+
+* Change director: `$ cd /var/www/`.
+* Create directory: `$ sudo mkdir moviecafe`.
+* Goto new directory: `$ cd moviecafe`.
+* Clone the project: `$ sudo git clone -b deployment https://github.com/skb1129/item-catalog.git`.
+* Move the `app.wsgi` to parent directory: `$ sudo mv app.wsgi ../app.wsgi`.
+* Move the `moviecafe.conf` file: `$ sudo mv moviecafe.conf /etc/apache2/sites-available/moviecafe.conf`.
+* Enable the website using: `$ sudo a2ensite moviecafe`.
+* Restart apache2 service: `$ sudo service apache2 reload`.
+
+### FINISH
+
+And, thats all we need to do.
+Go to <b>35.154.26.246</b> on your browser and use the application.
+
+## Contents of some files
+
+### app.wsgi
+`
+#!/usr/bin/python
+import os, sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/moviecafe/")
+
+from moviecafe.app import app as application
+application.secret_key = os.urandom(12)
+`
+
+### moviecafe.conf
+`
+<VirtualHost *:80>
+	ServerName 35.154.26.246
+	ServerAdmin skbansal.cse15@chitkara.edu.in
+	WSGIScriptAlias / /var/www/moviecafe/app.wsgi
+	<Directory /var/www/moviecafe/moviecafe/>
+		Order allow,deny
+		Allow from all
+	</Directory>
+	Alias /static /var/www/moviecafe/moviecafe/static
+	<Directory /var/www/moviecafe/moviecafe/static/>
+		Order allow,deny
+		Allow from all
+	</Directory>
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+`
+
+## References
+
+* Udacity
+* StackOverflow
+* [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-14-04-lts)
+
+
+Contact:<br>
+Surya Kant Bansal<br>
+e-mail: skbansal.cse15@chitkara.edu.in
