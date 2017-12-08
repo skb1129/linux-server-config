@@ -116,7 +116,7 @@ Go to <b>35.154.26.246</b> on your browser and use the application.
 ## Contents of some files
 
 ### app.wsgi
-`
+```
 #!/usr/bin/python
 import os, sys
 import logging
@@ -125,10 +125,10 @@ sys.path.insert(0,"/var/www/moviecafe/")
 
 from moviecafe.app import app as application
 application.secret_key = os.urandom(12)
-`
+```
 
 ### moviecafe.conf
-`
+```
 <VirtualHost *:80>
 	ServerName 35.154.26.246
 	ServerAdmin skbansal.cse15@chitkara.edu.in
@@ -146,7 +146,7 @@ application.secret_key = os.urandom(12)
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-`
+```
 
 ## References
 
