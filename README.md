@@ -111,7 +111,7 @@ Now, you can login in to <b>grader</b> using:
 ### FINISH
 
 And, thats all we need to do.
-Go to <b>35.154.26.246</b> on your browser and use the application.
+Go to <b>35.154.26.246</b> or <b>ec2-35-154-26-246.ap-south-1.compute.amazonaws.com</b> on your browser and use the application.
 
 ## Contents of some files
 
@@ -131,6 +131,7 @@ application.secret_key = os.urandom(12)
 ```
 <VirtualHost *:80>
 	ServerName 35.154.26.246
+	ServerAlias ec2-35-154-26-246.ap-south-1.compute.amazonaws.com
 	ServerAdmin skbansal.cse15@chitkara.edu.in
 	WSGIScriptAlias / /var/www/moviecafe/app.wsgi
 	<Directory /var/www/moviecafe/moviecafe/>
