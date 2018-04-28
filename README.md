@@ -17,13 +17,13 @@ This repository shows how to deploy your Item-Catalog Flask application to a rem
 ### Login using AWS private key
 
 The following command is used to login to remote server as Administrator:
-`$ ssh -i aws_secret_key.pem ubuntu@35.154.26.246`
+- `$ ssh -i aws_secret_key.pem ubuntu@35.154.26.246`
 
 ### Upgrades
 
 Use the following commands to upgrade older packages:
-`$ sudo apt update`
-`$ sudo apt upgrade`
+- `$ sudo apt update`
+- `$ sudo apt upgrade`
 
 ### Add new user
 
@@ -47,7 +47,7 @@ We need to create a new RSA key pair for user <b>grader</b>. For this we will us
 * Run `$ sudo service ssh restart` to refresh ssh.
 
 Now, you can login in to <b>grader</b> using:
-`$ ssh -i ~/.ssh/grader grader@35.154.26.246`
+- `$ ssh -i ~/.ssh/grader grader@35.154.26.246`
 
 ### Configure SSH
 
@@ -61,32 +61,32 @@ Now, you can login in to <b>grader</b> using:
 * Save the file, then run `$ sudo service ssh restart` to refresh ssh.
 
 Now, you can login in to <b>grader</b> using:
-`$ ssh -i ~/.ssh/grader grader@35.154.26.246 -p 2200`
+- `$ ssh -i ~/.ssh/grader grader@35.154.26.246 -p 2200`
 
 ### Configure UFW
 
 * Install NTP package using: `$ sudo apt install ntp`.
 * Run commands:
-`$ sudo ufw disable`
-`$ sudo ufw default deny incoming`
-`$ sudo ufw default deny outgoing`
-`$ sudo ufw allow 2200/tcp`
-`$ sudo ufw allow www`
-`$ sudo ufw allow ntp`
-`$ sudo ufw enable`
+	- `$ sudo ufw disable`
+	- `$ sudo ufw default deny incoming`
+	- `$ sudo ufw default allow outgoing`
+	- `$ sudo ufw allow 2200/tcp`
+	- `$ sudo ufw allow www`
+	- `$ sudo ufw allow ntp`
+	- `$ sudo ufw enable`
 * The firewall is now configured.
 
 ### Install Project Dependencies
 
 * Install deployment dependencies using apt:
-`$ sudo apt install apache2 libapache2-mod-wsgi postgresql git python-dev python-pip`
+	- `$ sudo apt install apache2 libapache2-mod-wsgi postgresql git python-dev python-pip`
 * Install project dependencies using pip:
-`$ sudo pip install flask`
-`$ sudo pip install httplib2`
-`$ sudo pip install sqlalchemy`
-`$ sudo pip install requests`
-`$ sudo pip install psycopg2`
-`$ sudo pip install oauth2client`
+	- `$ sudo pip install flask`
+	- `$ sudo pip install httplib2`
+	- `$ sudo pip install sqlalchemy`
+	- `$ sudo pip install requests`
+	- `$ sudo pip install psycopg2`
+	- `$ sudo pip install oauth2client`
 
 ### Setup Postgresql
 
